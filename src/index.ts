@@ -83,7 +83,7 @@ export const version = '1.0.4';
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
  * @returns number {@link registers.r1 Value of Register 1} or argument passed to exit
  */
-export const execute = (_code: string, maxInstructions = 262144) => {
+export const execute = (_code: string, maxInstructions = 2097152) => {
   const code = _code.replace(/;/gui, '\n').split('\r\n')
     .join('\n')
     .split('\n');
