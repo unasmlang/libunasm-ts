@@ -77,7 +77,7 @@ export let instructions = {
 export let labels = {};
 
 /** Version */
-export const version = '1.0.4';
+export const version = '1.0.5';
 
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
