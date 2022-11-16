@@ -13,6 +13,7 @@ See [this](https://unasmlang.github.io/)
 ### Embedding into your own websites
 #### With a bundler
 Use <https://unasmlang.github.io/libunasm-ts/lib.js> or build it yourself
+> Need ts mappings too? See <https://unasmlang.github.io/libunasm-ts/lib.d.ts>
 
 #### Without a bundler
 You're out of luck; use parceljs or similar. See the [demo repo](https://github.com/unasmlang/unasmlang.github.io) for a very minimal example.
