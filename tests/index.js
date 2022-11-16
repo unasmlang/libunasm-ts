@@ -8,3 +8,10 @@ if (output !== 'Hello World!')
 else
   console.log('Hello World: Success');
 output = '';
+let didCallCustomInstruction = false;
+lib.instructions.custominstruction = () => didCallCustomInstruction = true;
+lib.execute('custominstruction');
+if (!didCallCustomInstruction)
+  throw new Error('Did not call custom instruction `custominstruction`');
+else
+  console.log('Custom Instruction: Success');
