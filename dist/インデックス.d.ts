@@ -47,13 +47,13 @@ export let instructions: {
     swap: () => void;
 };
 /** Labels | {[name: string] = line: number} */
-export const labels: {};
+export let labels: {};
 /** Version */
-export const version = "1.0.1";
+export const version = '1.0.3';
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
  * @returns number {@link registers.r1 Value of Register 1} or argument passed to exit
  */
 export const execute: (_code: string) => string | number;
 
-//# sourceMappingURL=インデックス.d.ts.map
+// # sourceMappingURL=インデックス.d.ts.map

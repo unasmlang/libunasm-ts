@@ -76,7 +76,7 @@ export let instructions = {
 export let labels = {};
 
 /** Version */
-export const version = '1.0.3';
+export const version = '1.0.4';
 
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
@@ -107,10 +107,14 @@ export const execute = (_code: string) => {
             line++;
           break;
         /** Jumps to the label args[0] */
-        case 'jmp':
-          line = labels[args[0]];
+        case 'jmp': {
+          const ln = labels[args[0]];
+          if (typeof ln !== 'number')
+            throw new Error(`Cannot jump to label ${args[0]} (not a number - possibly undefined)`);
+          line = ln;
           break;
-          /** Jump to a random line */
+        }
+        /** Jump to a random line */
         case 'rjmp':
           line = Math.floor(Math.random() * code.length);
           break;
