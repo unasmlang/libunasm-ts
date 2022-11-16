@@ -5,7 +5,8 @@
   "types": "dist/インデックス.d.ts",
   "scripts": {
     "build": "parcel build",
-    "start": "pnpm build && node ."
+    "start": "pnpm build && node .",
+    "test": "node tests"
   },
   "version": "1.0.1",
   "description": "",
