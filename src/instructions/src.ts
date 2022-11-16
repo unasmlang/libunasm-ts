@@ -1,0 +1,1 @@
+export default ()=>console.error('// Feature unavailable. Unlike the original (https://github.com/tntgav/unasm/blob/9d6cf9d4bf871b52ef146588f468ba0311b5cf86/interpreter.js#L117-L119), this is split into multiple files & can run on the browser.');
