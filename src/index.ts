@@ -117,6 +117,11 @@ export const execute = (_code: string) => {
         case 'ljmp':
           line = Number(args[0]);
           break;
+        /** not in spec | {@link https://esolangs.org/wiki/Quine Quine} */
+        case 'q':
+        case 'quine':
+          console.log(_code);
+          break;
         /** Exits */
         case 'exit':
           return args[0] ? args.join(' ') : registers.r1;
