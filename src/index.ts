@@ -87,6 +87,8 @@ export const execute = (_code: string, maxInstructions = 2097152) => {
   const code = _code.replace(/;/gui, '\n').split('\r\n')
     .join('\n')
     .split('\n');
+  if (maxInstructions === 2097152 && maxInstructions < code.length)
+    maxInstructions = code.length * 2;
   let line = 0;
   let instructions = 0;
   while (line < code.length) {
