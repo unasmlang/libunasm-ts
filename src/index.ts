@@ -72,10 +72,11 @@ export let instructions = {
 };
 
 /** Labels | {[name: string] = line: number} */
-export const labels = {};
+// eslint-disable-next-line prefer-const
+export let labels = {};
 
 /** Version */
-export const version = '1.0.2';
+export const version = '1.0.3';
 
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
