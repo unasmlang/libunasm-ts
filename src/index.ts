@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import out from './instructions/out';
 import outc from './instructions/outc';
 import r1 from './instructions/r1';
@@ -82,12 +83,18 @@ export const version = '1.0.4';
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
  * @returns number {@link registers.r1 Value of Register 1} or argument passed to exit
  */
-export const execute = (_code: string) => {
+export const execute = (_code: string, maxInstructions = 262144) => {
   const code = _code.replace(/;/gui, '\n').split('\r\n')
     .join('\n')
     .split('\n');
   let line = 0;
+  let instructions = 0;
   while (line < code.length) {
+
+    instructions++;
+    if (instructions > maxInstructions)
+      return;
+
     const args = code[line].trim().split(' ')
       .map(v=>v.trim());
     const instruction = args.shift()?.trim();
