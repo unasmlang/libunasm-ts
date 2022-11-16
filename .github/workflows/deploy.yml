@@ -1,0 +1,62 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Build & Deploy to Github Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Install Dependencies
+        run: npm i
+      - name: Build
+        run: npm run build
+      - name: Delete node modules
+        run: rm -rf node_modules
+      - name: Copy output files
+        run: |
+          cp dist/インデックス.js ./lib.js
+          cp dist/インデックス.js ./インデックス.js
+          cp dist/インデックス.js.map ./lib.js.map
+          cp dist/インデックス.js.map ./インデックス.js.map
+          cp dist/インデックス.d.ts ./lib.d.ts
+          cp dist/インデックス.d.ts ./インデックス.d.ts
+          cp dist/インデックス.d.ts.map ./lib.d.ts.map
+          cp dist/インデックス.d.ts.map ./インデックス.d.ts.map
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
