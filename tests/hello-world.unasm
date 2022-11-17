@@ -1,5 +1,3 @@
-this file will output hello world
-
 r1 72; outc
 r1 101; outc
 r1 108; outc; outc

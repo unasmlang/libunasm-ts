@@ -1,0 +1,5 @@
+r1 2
+saveVars a
+r1 3
+loadVars a
+exit

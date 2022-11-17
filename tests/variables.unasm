@@ -1,0 +1,5 @@
+r1 -2
+s var1
+s var2 a
+s var3 abc def
+s var4 %var3%
