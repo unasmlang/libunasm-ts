@@ -65,3 +65,7 @@ else
   console.log('Proper Variables: Success');
 output = '';
 
+if (lib.execute(fs.readFileSync('./tests/hang.unasm', 'utf-8'), 1) === 'did not exit')
+  throw new Error('Hang Protection Failed: Did not exit after maximum instruction count');
+else
+  console.log('Hang Protection: Success');
