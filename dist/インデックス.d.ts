@@ -1,8 +1,5 @@
 /** Registers r1 & r2 */
-export let registers: {
-    r1: number;
-    r2: number;
-};
+export let registers: Record<'r1' | 'r2', any>;
 /** List of instructions - Note, in most non-node implementations, its recommended to change out & outc */
 export let instructions: {
     /** Writes register 1 to standard output | By default, this defaults to console.log */
@@ -40,20 +37,28 @@ export let instructions: {
     /** Sets r1 to a random integer between 0 and 256, inclusive 0 & exclusive 256 */
     'r2#': () => number;
     /** Sets r1 to r2 */
-    r1r2: () => number;
+    r1r2: () => any;
     /** Sets r2 to r1 */
-    r2r1: () => number;
+    r2r1: () => any;
     /** Swaps r1 & r2 */
     swap: () => void;
+    /** Saves variables */
+    s: (args: string[]) => void;
+    /** Loads variables */
+    g: (args: string[]) => void;
 };
+/** Unsafe Options, use with care! */
+export let unsafe: {};
 /** Labels | {[name: string] = line: number} */
 export let labels: {};
 /** Version */
-export const version = "1.0.4";
+export const version = "1.1.0";
+/** Variables */
+export let variables: Record<string, any>;
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
  * @returns number {@link registers.r1 Value of Register 1} or argument passed to exit
  */
-export const execute: (_code: string, maxInstructions?: number) => string | number;
+export const execute: (_code: string, maxInstructions?: number) => any;
 
 //# sourceMappingURL=インデックス.d.ts.map
