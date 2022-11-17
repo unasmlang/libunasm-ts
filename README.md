@@ -58,5 +58,8 @@ libunasm.instructions.get = (args)=> // spec name, you might want a different on
   libunasm.registers.r1 = fs.readFileSync(args, 'utf-8');
 ```
 
+#### Note
+You cannot read or write to the line count. Any instruction doing that is defined in [index.ts](src/index.ts) within the execute() closure.
+
 ## note
 by default, the interpereter will perform a maximum of 2097152 instructions before aborting. this can be changed by adding the maximum amount as the 2nd argument to `.execute()` - if you don't care about hanging, set this to `Infinity`
