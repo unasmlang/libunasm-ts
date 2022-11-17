@@ -10,6 +10,12 @@ if (output !== 'Hello World!')
 else
   console.log('Hello World: Success');
 output = '';
+lib.execute(fs.readFileSync('./tests/hello-world-2.unasm', 'utf-8'));
+if (output !== 'Hello World!')
+  throw new Error(`Hello World 2 did not output hello world\nOutputted:${output}`);
+else
+  console.log('Hello World 2: Success');
+output = '';
 let didCallCustomInstruction = false;
 lib.instructions.custominstruction = () => didCallCustomInstruction = true;
 lib.execute('custominstruction');
