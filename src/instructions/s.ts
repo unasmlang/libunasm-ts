@@ -7,5 +7,5 @@ export default (args: string[]) => {
   if (!name)
     throw new Error('No name specified!');
   const value = args.join(' ') || registers.r1;
-  variables[name] = value;
+  variables[name] = isNaN(Number(value)) ? value : Number(value);
 };
