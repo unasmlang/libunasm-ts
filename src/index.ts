@@ -90,6 +90,12 @@ export const version = '1.1.0';
 /** Variables */
 export let variables: Record<string, any> = {};
 
+/** Other options */
+export let options = {
+  /** Should we error on unknown instructions? Defaults to false per spec */
+  'shouldErrorOnUnknownInstruction': false
+};
+
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
  * @returns number {@link registers.r1 Value of Register 1} or argument passed to exit
@@ -154,6 +160,9 @@ export const execute = (_code: string, maxInstructions = 2097152) => {
         /** Exits */
         case 'exit':
           return args[0] ? args.join(' ') : registers.r1;
+        default:
+          if (options.shouldErrorOnUnknownInstruction)
+            throw new Error(`Unknown Instruction: ${instruction}`);
         }
     line++;
   }
