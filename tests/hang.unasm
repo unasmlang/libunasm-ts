@@ -1,4 +1,4 @@
-this should exit before we reach the exit ok instruction as part of the hang protection, as we are passing an extremely low maximum instruction count:
+this should exit before we reach the exit instruction as part of the hang protection, as we are passing an extremely low maximum instruction count:
 
 r1 0
 r1+
