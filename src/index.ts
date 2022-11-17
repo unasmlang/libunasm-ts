@@ -117,7 +117,7 @@ export const execute = (_code: string, maxInstructions = 2097152) => {
       .map(v => v.trim())
       .map(v => {
         for (const v2 in variables)
-          v = v.split(v2).join(variables[v2]);
+          v = v.split(`%${v2}%`).join(variables[v2]);
         return v;
       });
     const instruction = args.shift()?.trim();
