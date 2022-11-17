@@ -33,7 +33,7 @@ If you want to extend the instruction set beyond the unasm spec, within the TS/J
 ```js
 const libunasm = require('./libunasm');
 libunasm.instructions.custominstruction = (args) => // args is string[]
-  console.log(`hello, ${args[0]} is ${libunasm.registers[args[0]]}`); // libunasm is Record<'r1'|'r2',number>
+  console.log(`hello, ${args[0]} is ${libunasm.registers[args[0]]}`); // libunasm.registers is Record<'r1'|'r2',number>
 libunasm.execute('r1 2; custominstruction r1'); // -> logs hello, r1 is 2
 ```
 
