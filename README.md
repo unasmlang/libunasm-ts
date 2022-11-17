@@ -48,6 +48,12 @@ libunasm.instructions.jseval = (args) =>
 ```unasm
 jseval console.log('line 1'):console.log('line 2'):return -1; out; outputs -1
 ```
+###### FS Read
+```js
+const fs = require('fs')
+libunasm.instructions.get = (args)=> // spec name, you might want a different one
+  libunasm.registers.r1 = fs.readFileSync(args, 'utf-8');
+```
 
 ## note
 by default, the interpereter will perform a maximum of 2097152 instructions before aborting. this can be changed by adding the maximum amount as the 2nd argument to `.execute()` - if you don't care about hanging, set this to `Infinity`

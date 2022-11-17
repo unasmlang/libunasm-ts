@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable complexity */
 import out from './instructions/out';
 import outc from './instructions/outc';
@@ -19,16 +20,17 @@ import r1r from './instructions/r1r';
 import r1r2 from './instructions/r1r2';
 import r2r1 from './instructions/r2r1';
 import swap from './instructions/swap';
+import s from './instructions/s';
+import g from './instructions/g';
 
 /** Registers r1 & r2 */
 // eslint-disable-next-line prefer-const
-export let registers = {
+export let registers: Record<'r1'|'r2', any> = {
   'r1': 0,
   'r2': 0,
 };
 
 /** List of instructions - Note, in most non-node implementations, its recommended to change out & outc */
-// eslint-disable-next-line prefer-const
 export let instructions = {
   /** Writes register 1 to standard output | By default, this defaults to console.log */
   'out': out,
@@ -69,15 +71,24 @@ export let instructions = {
   /** Sets r2 to r1 */
   'r2r1': r2r1,
   /** Swaps r1 & r2 */
-  'swap': swap
+  'swap': swap,
+  /** Saves variables */
+  's': s,
+  /** Loads variables */
+  'g': g,
 };
 
+/** Unsafe Options, use with care! */
+export let unsafe = {};
+
 /** Labels | {[name: string] = line: number} */
-// eslint-disable-next-line prefer-const
 export let labels = {};
 
 /** Version */
-export const version = '1.0.5';
+export const version = '1.1.0';
+
+/** Variables */
+export let variables: Record<string, any> = {};
 
 /**
  * Executes your code | Running multiple code snippets at once may break shit, as {@link registers register values} & {@link labels labels} are not seperated between executions.
@@ -92,13 +103,17 @@ export const execute = (_code: string, maxInstructions = 2097152) => {
   let line = 0;
   let instructions = 0;
   while (line < code.length) {
-
     instructions++;
     if (instructions > maxInstructions)
       return;
 
     const args = code[line].trim().split(' ')
-      .map(v=>v.trim());
+      .map(v => v.trim())
+      .map(v => {
+        for (const v2 in variables)
+          v = v.split(v2).join(variables[v2]);
+        return v;
+      });
     const instruction = args.shift()?.trim();
 
     if (instruction)
